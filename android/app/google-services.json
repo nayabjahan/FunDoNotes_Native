@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "308099233946",
+    "project_id": "notefundo",
+    "storage_bucket": "notefundo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308099233946:android:c7ed722263424c06d4c723",
+        "android_client_info": {
+          "package_name": "com.notefundo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "308099233946-9tbgo38kiak3bi0q8uigb3vj01llnn11.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeJ5gZh-mo_pYe5JwBi-QC9QooGgWxfLQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "308099233946-9tbgo38kiak3bi0q8uigb3vj01llnn11.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
