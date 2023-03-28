@@ -22,23 +22,52 @@ import auth from '@react-native-firebase/auth';
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [checkValidEmail, setCheckValidEmail] = useState(false);
+  const [error,setError] = useState('');
   const [seePassword, setSeePassword] = useState(true);
 
   const {login} = useContext(AuthContext)
  
+  const Validation=()=>{
+    let regxEmail = /^[A-Za-z0-9+_.-]+@(.+)$/;
+    let regxPassword =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/;
+      const value = {};
+      let valid = true;
+      if (email === '' || !regxEmail.test(email)) {
+        value.user='Please Enter valid email.';
+        valid = false;
+      }
+      if (email.length < 9 && email.length > 1) {
+        (value.user = 'please enter valid email'), (valid = false);
+      }
   
- const handleCheckEmail = text => {
-    let re = /\S+@\S+\.\S+/;
-    let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-
-    setEmail(text);
-    if (re.test(text) || regex.test(text)) {
-      setCheckValidEmail(false);
-    } else {
-      setCheckValidEmail(true);
+      if (password === '' || !regxPassword.test(password)) {
+         value.password = 'Please Enter valid password';
+         valid = false;
+       }
+      if (password.length < 9 && password.length > 1) {
+        (value.password = 'please enter valid password'), (valid = false);
+      }
+      setError(value);
+      return valid;
+  };
+  const onSignIn = () => {
+    if (Validation()) {
+      console.log('SignIn successfully');
+      login(email, password,catchError);
     }
   };
+ 
+const catchError=(code)=>{
+  const temp={}
+  if(code=="auth/user-not-found"){
+    temp.user="User Not Found"
+  }
+  if(code=='auth/wrong-password'){
+temp.password="wrong password"
+  }
+  setError(temp)
+}
 
   return (
     <Background>
@@ -48,7 +77,7 @@ const LoginScreen = ({navigation}) => {
         
         <FormInput
           labelValue={email}
-          onChangeText={text => handleCheckEmail(text)}
+          onChangeText={text => setEmail(text)}
           placeholderText="Email"
           iconType="user"
           keyboardType="email-address"
@@ -56,12 +85,8 @@ const LoginScreen = ({navigation}) => {
           autoCorrect={false}
         />
         
-        
-        {checkValidEmail ? (
-          <Text style={styles.textFailed}>Wrong format email</Text>
-        ) : (
-          <Text style={styles.textFailed}> </Text>
-        )}
+      <Text style={{color: 'red'}}>{error.user}</Text>
+       
         <View style={{flexDirection:'row'}}>
         <FormInput
           labelValue={password}
@@ -83,10 +108,12 @@ const LoginScreen = ({navigation}) => {
             style={styles.icon}
           />
         </TouchableOpacity>
+        
         </View>
+        <Text style={{color:'red'}}>{error.password}</Text>
         <FormButton
           buttonTitle="Sign In"
-          onPress={() => login(email,password)}
+          onPress={onSignIn}
         />
         <TouchableOpacity style={styles.forgotButton} onPress={() => navigation.navigate('ForgotPass')}>
           <Text style={styles.navButtonText}>Forgot Password?</Text>
@@ -161,6 +188,7 @@ const styles = StyleSheet.create({
   textFailed: {
     alignSelf: 'flex-end',
     color: 'red',
+    marginTop:5,
   },
   wrapperIcon: {
     position: 'absolute',
