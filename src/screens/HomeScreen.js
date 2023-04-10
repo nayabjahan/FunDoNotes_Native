@@ -19,21 +19,24 @@ import {
 import Topbar from '../components/Topbar';
 
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
    const {user,logout} = useContext (AuthContext);
+   const handleDrawer=()=>{
+    navigation.openDrawer();
+   }
   return (
   <Background>
     <View style = {styles.Container}>
     <View style={styles.Top}>
-        <Topbar/>
+        <Topbar onPress={handleDrawer}/>
       </View>
      <View style={styles.bottom}>
     <BottomBar/>
     </View> 
-{/* <Text style={styles.text}>
+ <Text style={styles.text}>
 welcome {user.uid}
 </Text>
-<FormButton  buttonTitle='LogOut' onPress={() => logout()}/> */}
+<FormButton  buttonTitle='LogOut' onPress={() => logout()}/> 
     </View>
   </Background>
   );

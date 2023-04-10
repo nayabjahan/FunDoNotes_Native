@@ -2,6 +2,7 @@ import React, {createContext, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 
 import {Alert} from 'react-native';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
@@ -11,7 +12,7 @@ export const AuthProvider = ({children}) => {
       value={{
         user,
         setUser,
-        login: async (email, password,errorCallback) => {
+        login: async (email, password, errorCallback) => {
           try {
             await auth().signInWithEmailAndPassword(email, password);
           } catch (e) {
@@ -33,14 +34,31 @@ export const AuthProvider = ({children}) => {
             console.log(e);
           }
         },
+        googleLogin: async () => {
+          try {
+            await GoogleSignin.hasPlayServices({
+              showPlayServicesUpdateDialog: true,
+            });
+            // Get the users ID token
+            const {idToken} = await GoogleSignin.signIn();
 
-        resetPassword: async (email) => {
+            // Create a Google credential with the token
+            const googleCredential =
+              auth.GoogleAuthProvider.credential(idToken);
+            // Sign-in the user with the credential
+            return auth().signInWithCredential(googleCredential);
+          } catch (error) {
+            console.log(error);
+          }
+        },
+
+        resetPassword: async email => {
           try {
             await auth()
               .sendPasswordResetEmail(email)
               .then(() => {
                 Alert('reset password has been sent successfully');
-               });
+              });
           } catch (e) {
             console.log(e);
           }

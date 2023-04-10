@@ -20,14 +20,14 @@ import {
   import { Avatar } from 'react-native-paper';
   
 
-const Topbar = ({navigation}) => {
+const Topbar = (props) => {
 
 
   return (
     <View style={styles.container}>
     <TouchableOpacity
         style={styles.barIcon}
-        onPress={() => navigation.navigate('DrawerNavigation')}>
+        onPress={props.onPress}>
        <FontAwesome name={'bars'} size={25} color={'#000'} />
        </TouchableOpacity>
        
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: FLEXDIRECTION.DIRECTION,
         height: HIGHT.INPUTTEXT,
-        backgroundColor: COLOR.TOPBAR_BACKGROUND,
+        backgroundColor: "rgba(0,0,0,0.4)",
         width: WIDTH.FULL,
         borderRadius: BORDERRADIUS.TOPBAR_RADIUS,
         justifyContent: JUSTIFYCONTENT.AROUND,

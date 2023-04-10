@@ -3,14 +3,16 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import DrawerNavigation from './DrawerNavigation';
 const Stack = createStackNavigator();
+
 const AppStack = () => {
   return (
     <Stack.Navigator>
        <Stack.Screen
        
-       name="HomeScreen"
-         component={HomeScreen}
+       name="DrawerNavigation"
+         component={DrawerNavigation}
       //  options={({navigation}) => ({
       //     title: '',
       //     headerStyle: {

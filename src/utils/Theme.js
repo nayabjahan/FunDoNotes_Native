@@ -3,7 +3,7 @@ export const COLOR = {
   BUTTON_BACKGROUND: '#000',
   APP_BACKGROUND: '#fff',
   RED: 'red',
-  TOPBAR_BACKGROUND: '#c9cff5',
+  TOPBAR_BACKGROUND: 'rgba(0,0,0,0.4)',
   MODAL_BACKGROUND: '#c9cff5',
   MODAL_HEAD: '#7586f0',
   GREY: '#353336',

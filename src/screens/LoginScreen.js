@@ -25,7 +25,7 @@ const LoginScreen = ({navigation}) => {
   const [error,setError] = useState('');
   const [seePassword, setSeePassword] = useState(true);
 
-  const {login} = useContext(AuthContext)
+  const {login,googleLogin} = useContext(AuthContext)
  
   const Validation=()=>{
     let regxEmail = /^[A-Za-z0-9+_.-]+@(.+)$/;
@@ -134,7 +134,7 @@ temp.password="wrong password"
               btnType="google"
               color="#de4d41"
               backgroundColor="#f5e7ea"
-              onPress={() => {}}
+              onPress={() => googleLogin()}
             />
           </View>
         ) : null}
