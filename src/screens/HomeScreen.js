@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, View,LogBox,SafeAreaView, Platform, StatusBar,TouchableOpacity} from 'react-native';
+import React,{useState}from 'react';
 import Background from '../components/Background';
 import FormButton from '../components/FormButton';
 import { AuthContext} from '../navigation/AuthProvider';
@@ -17,26 +17,34 @@ import {
     WIDTH,
   } from '../utils/Theme';
 import Topbar from '../components/Topbar';
-
+import ProfileModal from '../components/ProfileModal';
+LogBox.ignoreLogs(['Reanimated 2']);
 
 const HomeScreen = ({navigation}) => {
+  const [viewModal, setViewModal] = useState(false);
    const {user,logout} = useContext (AuthContext);
    const handleDrawer=()=>{
     navigation.openDrawer();
    }
+ 
   return (
-  <Background>
+    <Background>
     <View style = {styles.Container}>
     <View style={styles.Top}>
-        <Topbar onPress={handleDrawer}/>
+        <Topbar />
       </View>
+      {/* <View >
+        <ProfileModal
+       viewModal={viewModal}
+       setViewModal={handleModal}
+       />
+      </View> */}
      <View style={styles.bottom}>
     <BottomBar/>
     </View> 
- <Text style={styles.text}>
-welcome {user.uid}
-</Text>
-<FormButton  buttonTitle='LogOut' onPress={() => logout()}/> 
+    
+ 
+ {/* <FormButton  buttonTitle='LogOut' onPress={() => logout()}/>   */}
     </View>
   </Background>
   );
@@ -46,8 +54,10 @@ export default HomeScreen
 
 const styles = StyleSheet.create({
     Container: {
-        flex: FLEX.FLEX,
         alignContent: ALIGNCONTENT.CENTER,
+        FLEX:FLEX.FLEX,
+
+      paddingTop:Platform.OS==='android'?StatusBar.currentHeight:0,
       },
       Top: {
         justifyContent: JUSTIFYCONTENT.CONTENT,

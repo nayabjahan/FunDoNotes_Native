@@ -43,7 +43,7 @@ const BottomBar = () => {
           onPress={() => {
             HandelAddNote();
           }}>
-          <Icons name={'plus'} size={40} color="#000" />
+          <Icons name={'plus'} size={50} color="#000"/>
         </TouchableOpacity>
       </View>
 
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     width: WIDTH.FULL,
     height: HIGHT.BUTTON,
     paddingHorizontal: PADDING.PLUS_ICON,
-    marginTop:610,
+    marginTop:680,
   },
   IconView: {
     justifyContent: JUSTIFYCONTENT.CENTER,
@@ -77,8 +77,10 @@ const styles = StyleSheet.create({
     marginLeft: MARGINLIFT.PLUS_ICON,
     borderRadius: BORDERRADIUS.PLUS_ICON,
     borderWidth: BORDERWIDTH.PLUS_ICON,
-    borderColor: COLOR.APP_BACKGROUND,
+    borderColor: '#d3eaf2',
     marginTop: MARGINTOP.PLUS_ICON,
     alignItems: ALIGNITEMS.ITEM,
+    paddingVertival:10,
+    
   },
   });

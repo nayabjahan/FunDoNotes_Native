@@ -53,7 +53,7 @@ const LoginScreen = ({navigation}) => {
   };
   const onSignIn = () => {
     if (Validation()) {
-      console.log('SignIn successfully');
+      // console.log('SignIn successfully');
       login(email, password,catchError);
     }
   };

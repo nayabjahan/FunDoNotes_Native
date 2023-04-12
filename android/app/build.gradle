@@ -100,6 +100,7 @@ android {
 
     namespace "com.notefundo"
     defaultConfig {
+         vectorDrawables.useSupportLibrary = true
         applicationId "com.notefundo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion

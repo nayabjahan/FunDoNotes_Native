@@ -80,17 +80,17 @@ export const MARGINTOP = {
   TOP: 20,
   FULL: 20,
   MIDDLE: 30,
-  PLUS_ICON: -40,
+  PLUS_ICON: -62,
   NOTE_CARD: 10,
   NOTE_CARD_TITLE: 3,
 };
 export const MARGINLIFT = {
   LEFT: 20,
-  DRAWER_LEFT: 20,
-  BS_REMINDER: 50,
+  DRAWER_LEFT: 10,
+  BS_REMINDER: -160,
   MODAL_LEFT: -20,
   DATE_TIME: 15,
-  PLUS_ICON: 40,
+  PLUS_ICON: 90,
   GRID: 30,
 };
 
